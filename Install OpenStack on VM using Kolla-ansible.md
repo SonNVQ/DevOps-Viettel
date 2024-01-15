@@ -21,7 +21,7 @@ It is recommended that your computer has at least 16GB RAM and a modern CPU gene
 
 # 3. Configure VMWare and create VMs
 
-## 3.1. Network configurations:
+## 3.1. Network configurations
 
 To install OpenStack, we need **2 network interfaces**, one for **internal** and another one for **external** connection so we will create these two in VMWare.
 
