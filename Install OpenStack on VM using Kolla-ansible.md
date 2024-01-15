@@ -622,7 +622,7 @@ After having internet connection again, we can continue.
     ```
     
 
-## 5. Access the OpenStack Horizon dashboard
+# 5. Access the OpenStack Horizon dashboard
 
 First, go back to deploy node, and get the horizon admin password.
 
