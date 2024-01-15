@@ -40,8 +40,6 @@ A Docker registry stores Docker images. Docker Hub is a public registry that any
 
 ### 2.5.1. Images
 
-### 2.5.1. Images
-
 A Docker image is a lightweight, standalone, and executable software package that includes everything needed to run a piece of software, including the code, runtime, libraries, and system tools. It serves as the basis for creating Docker containers. Images are built using instructions written in a Dockerfile, which specifies the base image, dependencies, environment variables, and other configurations required for running the application.
 
 Images can be pulled from a registry using the `docker pull` command, and once pulled, they can be used to create containers using the `docker run` command. Docker images are immutable, meaning they cannot be modified once created. However, they can be versioned and updated by building new images based on the existing ones.
