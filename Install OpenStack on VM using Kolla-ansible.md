@@ -332,10 +332,11 @@ We will install the latest supported stable version at writing time is 2023.3. Y
 While we are using root account, there is no need for `sudo` with some commands.
 
 1. Update the package index
+    ```bash
+    apt update
+    ```
     
-    `apt update`
-    
-2. Install Python build dependencies:
+1. Install Python build dependencies:
     
     
     ```bash
@@ -425,9 +426,9 @@ kolla-ansible install-deps
 
 The next step is to prepare our inventory file. An inventory is an Ansible file where we specify hosts and the groups that they belong to. We can use this to define node roles and access credentials.
 
-Kolla Ansible comes with `**all-in-one**` and `**multinode`** example inventory files. The difference between them is that the former is ready for deploying single-node OpenStack on localhost. In this guide, we will show the `**all-in-one**` installation.
+Kolla Ansible comes with `all-in-one` and `multinode` example inventory files. The difference between them is that the former is ready for deploying single-node OpenStack on localhost. In this guide, we will show the `all-in-one` installation.
 
-We will use `**all-in-one**` since we are installing on only one OpenStack node.
+We will use `all-in-one` since we are installing on only one OpenStack node.
 
 ![Untitled](images/Install%20OpenStack%20on%20VM%20using%20Kolla-ansible%20ef2b2eb585234389af61f80598a52f03/Untitled%2069.png)
 
@@ -465,7 +466,7 @@ ansible -i all-in-one all -m ping
 
 ![Untitled](images/Install%20OpenStack%20on%20VM%20using%20Kolla-ansible%20ef2b2eb585234389af61f80598a52f03/Untitled%2072.png)
 
-Now everything is ready for install OpenStack.
+Now everything is ready to install OpenStack.
 
 ### 4.5.2. Kolla passwords
 
