@@ -1,6 +1,6 @@
 # Install OpenStack on VM using Kolla-ansible
 
-> Author: SonNVQ - DevOps Intern at Viettel Network
+> Author: SonNVQ - DevOps Intern at Viettel Networks
 > 
 
 # 1. Introduction
