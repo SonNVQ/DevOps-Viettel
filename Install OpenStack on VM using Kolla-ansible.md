@@ -1,6 +1,6 @@
 # Install OpenStack on VM using Kolla-ansible
 
-> Author: SonNVQ - DevOps Intern at Viettel Networks
+> Author: SonNVQ - DevOps Intern at Viettel Network
 > 
 
 # 1. Introduction
@@ -134,6 +134,8 @@ Now, we can click ‘Close’ to get back and then click ‘Finish’ to start t
 
 ![Untitled](images/Install%20OpenStack%20on%20VM%20using%20Kolla-ansible%20ef2b2eb585234389af61f80598a52f03/Untitled%2028.png)
 
+Here we choose nhanhoa mirror rather than the default mirror for faster package download in Vietnam.
+
 ![Untitled](images/Install%20OpenStack%20on%20VM%20using%20Kolla-ansible%20ef2b2eb585234389af61f80598a52f03/Untitled%2029.png)
 
 ![Untitled](images/Install%20OpenStack%20on%20VM%20using%20Kolla-ansible%20ef2b2eb585234389af61f80598a52f03/Untitled%2030.png)
@@ -168,7 +170,7 @@ Now, we can click ‘Close’ to get back and then click ‘Finish’ to start t
 
 Now we can ssh to our vm using IP 10.0.5.1, it is recommened to use this IP rather than NAT IP because external interface can lost connection in the installing progress. 
 
-### 3.4. Set up SSH Key for VM
+## 3.4. Set up SSH Key for VM
 
 Although we can ssh to VM using username and password because it is less secure, especially in production. So we will set up SSH key to securely connect to our VM.
 
@@ -247,7 +249,7 @@ Test for connection:
 
 No password asking anymore, windows auto uses id_ecdsa private key we generated to establish a connection with our server.
 
-### 3.5. Some more things…
+## 3.5. Some more things…
 
 We should run `apt update` to fetch the latest version of the package list and `apt upgrade` to download and install the updates for each outdated package and dependency.
 
@@ -255,7 +257,7 @@ We should run `apt update` to fetch the latest version of the package list and `
 
 Now it is ready to deploy OpenStack on our OpenStack Node.
 
-### 3.6. Create deploy node
+## 3.6. Create deploy node
 
 We do not need to do the time-consuming process above again. Just use the clone function of VMWare to quickly create a deploy node to install kolla-ansible on.
 
@@ -327,16 +329,15 @@ We will install the latest supported stable version at writing time is 2023.3. Y
 > [https://docs.openstack.org/kolla-ansible/2023.2/user/quickstart.html](https://docs.openstack.org/kolla-ansible/2023.2/user/quickstart.html)
 > 
 
-### 4.1. Install dependencies
+## 4.1. Install dependencies
 
 While we are using root account, there is no need for `sudo` with some commands.
 
 1. Update the package index
-    ```bash
-    apt update
-    ```
     
-1. Install Python build dependencies:
+    `apt update`
+    
+2. Install Python build dependencies:
     
     
     ```bash
@@ -344,7 +345,7 @@ While we are using root account, there is no need for `sudo` with some commands.
     ```
     
 
-### 4.2. **Install dependencies for the virtual environment**
+## 4.2. **Install dependencies for the virtual environment**
 
 We will use python virtualenv to create a virtual environment.
 
@@ -382,29 +383,29 @@ We will use python virtualenv to create a virtual environment.
     ```
     
 
-### 4.3. **Install Kolla-ansible**
+## 4.3. **Install Kolla-ansible**
 
-1. Install kolla-ansible and its dependencies using **`pip`**.
+1. Install kolla-ansible and its dependencies using `pip`.
     
     ```bash
     pip install git+https://opendev.org/openstack/kolla-ansible@stable/2023.2
     ```
     
-2. Create the **`/etc/kolla`** directory.
+2. Create the `/etc/kolla` directory.
     
     ```bash
     mkdir -p /etc/kolla
     chown $USER:$USER /etc/kolla
     ```
     
-3. Copy **`globals.yml`** and **`passwords.yml`** to **`/etc/kolla`** directory.
+3. Copy `globals.yml` and `passwords.yml` to `/etc/kolla` directory.
     
     
     ```bash
     cp -r ~/ka/share/kolla-ansible/etc_examples/kolla/* /etc/kolla
     ```
     
-4. Copy **`all-in-one`** inventory file to the current directory.
+4. Copy `all-in-one` inventory file to the current directory.
     
     
     ```bash
@@ -412,7 +413,7 @@ We will use python virtualenv to create a virtual environment.
     ```
     
 
-### 4.4. Install Ansible Galaxy requirements
+## 4.4. Install Ansible Galaxy requirements
 
 Install Ansible Galaxy dependencies:
 
@@ -420,15 +421,15 @@ Install Ansible Galaxy dependencies:
 kolla-ansible install-deps
 ```
 
-### 4.5. Prepare initial configuration
+## 4.5. Prepare initial configuration
 
 ### 4.5.1. Inventory
 
 The next step is to prepare our inventory file. An inventory is an Ansible file where we specify hosts and the groups that they belong to. We can use this to define node roles and access credentials.
 
-Kolla Ansible comes with `all-in-one` and `multinode` example inventory files. The difference between them is that the former is ready for deploying single-node OpenStack on localhost. In this guide, we will show the `all-in-one` installation.
+Kolla Ansible comes with `**all-in-one**` and `**multinode`** example inventory files. The difference between them is that the former is ready for deploying single-node OpenStack on localhost. In this guide, we will show the `**all-in-one**` installation.
 
-We will use `all-in-one` since we are installing on only one OpenStack node.
+We will use `**all-in-one**` since we are installing on only one OpenStack node.
 
 ![Untitled](images/Install%20OpenStack%20on%20VM%20using%20Kolla-ansible%20ef2b2eb585234389af61f80598a52f03/Untitled%2069.png)
 
@@ -466,7 +467,7 @@ ansible -i all-in-one all -m ping
 
 ![Untitled](images/Install%20OpenStack%20on%20VM%20using%20Kolla-ansible%20ef2b2eb585234389af61f80598a52f03/Untitled%2072.png)
 
-Now everything is ready to install OpenStack.
+Now everything is ready for install OpenStack.
 
 ### 4.5.2. Kolla passwords
 
@@ -584,7 +585,7 @@ scp -i controller_key.pem ~/ka/share/kolla-ansible/init-runonce root@10.0.5.2:/r
 
 ![Untitled](images/Install%20OpenStack%20on%20VM%20using%20Kolla-ansible%20ef2b2eb585234389af61f80598a52f03/Untitled%2081.png)
 
-### 4.5.6. Install OpenStack client, config, and run init-runonce script
+### 4.5.7. Install OpenStack client, config, and run init-runonce script
 
 Now we need to ssh to our OpenStack node and then run these commands to install OpenStack client.
 
@@ -622,7 +623,7 @@ After having internet connection again, we can continue.
     ```
     
 
-## 5. Access the OpenStack Horizon dashboard
+# 5. Access the OpenStack Horizon and Skyline dashboard
 
 First, go back to deploy node, and get the horizon admin password.
 
